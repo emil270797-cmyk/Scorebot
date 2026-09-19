@@ -84,5 +84,5 @@ async def main():
   logging.info("Telegram-бот начал работу! Жду сообщений...")
   await dp.start_polling(bot)
 
-if name == "main": asyncio.run(main())
+if name == "main":
   asyncio.run(main())
