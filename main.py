@@ -25,41 +25,41 @@ dp = Dispatcher()
 @dp.message(Command("score"))
 async def send_match_banner(message: types.Message):
   try:
-    # Открываем шаблон (убедитесь, что template.png загружен на GitHub)
-    img = Image.open("template.png")
-    draw = ImageDraw.Draw(img)
+      # Открываем шаблон (убедитесь, что template.png загружен на GitHub)
+      img = Image.open("template.png")
+      draw = ImageDraw.Draw(img)
     
-    # Загружаем шрифт (убедитесь, что arial.ttf загружен на GitHub)
-    try:
-        font = ImageFont.truetype("arial.ttf", 60)
-    except IOError:
-        font = ImageFont.load_default() # Резервный шрифт, если arial.ttf не найден
+      # Загружаем шрифт (убедитесь, что arial.ttf загружен на GitHub)
+      try:
+          font = ImageFont.truetype("arial.ttf", 60)
+      except IOError:
+          font = ImageFont.load_default() # Резервный шрифт, если arial.ttf не найден
 
-    # Данные матча
-    team1 = "ФК Челябинск"
-    team2 = "Волга"
-    score = "1 : 0"
+      # Данные матча
+      team1 = "ФК Челябинск"
+      team2 = "Волга"
+      score = "1 : 0"
     
-    # Рисуем текст (координаты X, Y)
-    draw.text((100, 200), team1, font=font, fill="white")
-    draw.text((400, 200), score, font=font, fill="#e53935") 
-    draw.text((600, 200), team2, font=font, fill="white")
+      # Рисуем текст (координаты X, Y)
+      draw.text((100, 200), team1, font=font, fill="white")
+      draw.text((400, 200), score, font=font, fill="#e53935") 
+      draw.text((600, 200), team2, font=font, fill="white")
 
-    # Сохраняем картинку в оперативную память
-    image_buffer = io.BytesIO()
-    img.save(image_buffer, format="PNG")
-    image_buffer.seek(0)
+      # Сохраняем картинку в оперативную память
+      image_buffer = io.BytesIO()
+      img.save(image_buffer, format="PNG")
+      image_buffer.seek(0)
     
-    # Отправляем в чат Telegram
-    photo = BufferedInputFile(image_buffer.read(), filename="banner.png")
-    await message.answer_photo(
-        photo=photo, 
-        caption="🔥 <b>Гол!</b>\nСчет изменился.", 
-        parse_mode="HTML"
-    )
-except Exception as e:
-    # Если картинка или шрифт не найдены, бот пришлет ошибку прямо в чат
-    await message.answer(f"Произошла ошибка при генерации: {e}")
+      # Отправляем в чат Telegram
+      photo = BufferedInputFile(image_buffer.read(), filename="banner.png")
+      await message.answer_photo(
+          photo=photo, 
+          caption="🔥 <b>Гол!</b>\nСчет изменился.", 
+          parse_mode="HTML"
+      )
+  except Exception as e:
+      # Если картинка или шрифт не найдены, бот пришлет ошибку прямо в чат
+      await message.answer(f"Произошла ошибка при генерации: {e}")
 
 # 3. Функция-заглушка для Render (чтобы он не отключал бота)
 async def handle_ping(request): return web.Response(text="Bot is alive!")
