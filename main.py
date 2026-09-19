@@ -7,8 +7,8 @@ from PIL import Image, ImageDraw, ImageFont
 import io
 import asyncio
 
-TOKEN = os.getenv("8233218434:AAHnwMVmY0LTiTkYsx6DVEHJvjEPo7moezc")
-bot = Bot(token=TOKEN)
+BOT_TOKEN = os.getenv("8233218434:AAHnwMVmY0LTiTkYsx6DVEHJvjEPo7moezc")
+bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 @dp.message(Command("score"))
