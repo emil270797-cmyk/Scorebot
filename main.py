@@ -9,7 +9,7 @@ import asyncio
 
 TOKEN = os.getenv("8233218434:AAHnwMVmY0LTiTkYsx6DVEHJvjEPo7moezc")
 bot = Bot(token=TOKEN)
-dp = Dispatcher(
+dp = Dispatcher()
 
 @dp.message(Command("score"))
 async def send_match_banner(message: types.Message):
