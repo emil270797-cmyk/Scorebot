@@ -1,3 +1,4 @@
+import os
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import BufferedInputFile
@@ -5,8 +6,9 @@ from PIL import Image, ImageDraw, ImageFont
 import io
 import asyncio
 
-TOKEN = "8233218434:AAHnwMVmY0LTiTkYsx6DVEHJvjEPo7moezc"
-bot = Bot(token=TOKEN) dp = Dispatcher()
+TOKEN = os.getenv("8233218434:AAHnwMVmY0LTiTkYsx6DVEHJvjEPo7moezc")
+bot = Bot(token=TOKEN)
+dp = Dispatcher(
 
 @dp.message(Command("score"))
 async def send_match_banner(message: types.Message):
